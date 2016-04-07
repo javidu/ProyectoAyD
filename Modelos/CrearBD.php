@@ -38,6 +38,16 @@ else
 	echo("No se creo la tabla Estudiante/");
 }
 
+$tabla="CREATE TABLE Usuario(
+ 'id' int(11) NOT NULL auto_increment,
+ 'full_name' varchar(32) collate utf8_unicode_ci NOT NULL default '',
+ 'email' varchar(32) collate utf8_unicode_ci NOT NULL default '',
+ 'username' varchar(20) collate utf8_unicode_ci NOT NULL default '',
+ 'password' varchar(32) collate utf8_unicode_ci NOT NULL default '',
+ PRIMARY KEY ('id'),
+ UNIQUE KEY 'username' ('username')
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
 //Creacion tabla Estado
 $tabla = "CREATE TABLE Estado(
 	codigo int AUTO_INCREMENT,
@@ -86,26 +96,6 @@ if(mysqli_query($conexion,$tabla))
 else
 {
 	echo("No se creo la tabla Disenio/");
-}
-
-//Creacion tabla Usuario
-$tabla = "CREATE TABLE Usuario(
-	DNI varchar(10),
-	password varchar(40) NOT NULL,
-	nombre varchar(20) NOT NULL,
-	tipo int NOT NULL,
-	telefono varchar(15),
-	correo_electronico varchar(30),
-	direccion varchar(30),
-	PRIMARY KEY(DNI)
-	)";
-if(mysqli_query($conexion,$tabla))
-{
-	echo("Se creo la tabla Usuario/");
-}
-else
-{
-	echo("No se creo la tabla Usuario/");
 }
 
 //Creacion tabla Cotizacion
@@ -180,9 +170,5 @@ mysqli_query($conexion,$query);
 $query = "INSERT INTO Estado(nombre) VALUES('Producto Entregado')";
 mysqli_query($conexion,$query);
 
-$query = "INSERT INTO Usuario VALUES('1090484841','".sha1('1234')."','Daniel Vega',1,'3043430740','daniel.dvs95@hotmail.com','Calle 2n #14e-28 Villa Prado')";
-mysqli_query($conexion,$query);
-
 mysqli_close($conexion);
 ?>
-
